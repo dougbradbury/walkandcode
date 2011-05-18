@@ -76,6 +76,8 @@ Radiant::Initializer.run do |config|
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
 
+  config.action_controller.page_cache_directory = "#{RAILS_ROOT}/tmp/cache"
+
   config.after_initialize do
     # Add new inflection rules using the following format:
     ActiveSupport::Inflector.inflections do |inflect|
