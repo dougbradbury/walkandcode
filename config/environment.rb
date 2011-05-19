@@ -79,6 +79,9 @@ Radiant::Initializer.run do |config|
   config.after_initialize do
     Radiant::Config['comments.require_simple_spam_filter'] = false
     Radiant::Config['comments.auto_approve'] = "true"
+#    require "sanitizer"
+#    COMMENT_SANITIZER_OPTION = Sanitize::Config::RELAXED
+
     # Add new inflection rules using the following format:
     ActiveSupport::Inflector.inflections do |inflect|
       inflect.uncountable 'config'

@@ -1,3 +1,4 @@
+puts "preinit"
 begin
   require "rubygems"
   require "bundler"
