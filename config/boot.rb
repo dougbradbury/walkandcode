@@ -2,6 +2,17 @@
 # Configure your app in config/environment.rb and config/environments/*.rb
 
 RAILS_ROOT = File.expand_path("#{File.dirname(__FILE__)}/..") unless defined?(RAILS_ROOT)
+require 'rubygems'
+require 'bundler'
+
+begin
+  # Set up load paths for all bundled gems
+  ENV["BUNDLE_GEMFILE"] = File.expand_path("../../Gemfile", __FILE__)
+  Bundler.setup
+rescue Bundler::GemNotFound
+  raise RuntimeError, "Bundler couldn't find some gems." +
+    "Did you run `bundle install`?"
+end
 
 module Rails
   class << self
@@ -13,7 +24,7 @@ end
 
 module Radiant
   class << self
-    def boot!
+    def boot!      
       unless booted?
         preinitialize
         pick_boot.run
@@ -31,7 +42,7 @@ module Radiant
       when vendor?
         VendorBoot.new
       else
-        GemBoot.new
+      GemBoot.new
       end
     end
 
@@ -59,6 +70,14 @@ module Radiant
   class Boot
     def run
       load_initializer
+
+      Rails::Initializer.class_eval do
+        def load_gems
+          @bundler_loaded ||= Bundler.require :default, Rails.env
+        end
+      end
+
+      Rails::Initializer.run(:set_load_path)
     end
     
     def load_initializer
@@ -151,23 +170,9 @@ module Radiant
 
       private
         def read_environment_rb
-          File.read("#{RAILS_ROOT}/config/environment.rb")          
+          File.read("#{RAILS_ROOT}/config/environment.rb")
         end
     end
-  end
-end
-
-class Rails::Boot
-  def run
-    load_initializer
-
-    Rails::Initializer.class_eval do
-      def load_gems
-        @bundler_loaded ||= Bundler.require :default, Rails.env
-      end
-    end
-
-    Rails::Initializer.run(:set_load_path)
   end
 end
 

@@ -14,6 +14,7 @@ GEM
     activesupport (2.3.11)
     authlogic (2.1.6)
       activesupport
+    fastercsv (1.4.0)
     hpricot (0.8.4)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
@@ -43,6 +44,7 @@ PLATFORMS
 DEPENDENCIES
   RedCloth
   authlogic
+  fastercsv
   paperclip
   radiant (~> 0.9.1)
   rails (~> 2.3.5)
