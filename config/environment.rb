@@ -6,13 +6,13 @@
 
 # Specifies gem version of Rails to use when vendor/rails is not present
 require File.join(File.dirname(__FILE__), 'boot')
-
+gem 'authlogic'
 require 'radius'
 
 Radiant::Initializer.run do |config|
   # Skip frameworks you're not going to use (only works if using vendor/rails).
   # To use Rails without a database, you must remove the Active Record framework
-  config.frameworks -= [ :action_mailer ]
+#  config.frameworks -= [ :action_mailer ]
 
   # Only load the extensions named here, in the order given. By default all
   # extensions in vendor/extensions are loaded, in alphabetical order. :all
@@ -78,9 +78,13 @@ Radiant::Initializer.run do |config|
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
 
   config.after_initialize do
+    Radiant::Config['comments.require_simple_spam_filter'] = false
+    Radiant::Config['comments.auto_approve'] = "true"
     # Add new inflection rules using the following format:
     ActiveSupport::Inflector.inflections do |inflect|
       inflect.uncountable 'config'
     end
+
   end
 end
+

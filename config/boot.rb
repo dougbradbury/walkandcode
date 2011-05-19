@@ -151,11 +151,12 @@ module Radiant
 
       private
         def read_environment_rb
-          File.read("#{RAILS_ROOT}/config/environment.rb")
+          File.read("#{RAILS_ROOT}/config/environment.rb")          
         end
     end
   end
 end
 
 # All that for this:
+
 Radiant.boot!
