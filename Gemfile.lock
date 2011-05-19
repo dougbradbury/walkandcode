@@ -14,6 +14,7 @@ GEM
     activesupport (2.3.11)
     authlogic (2.1.6)
       activesupport
+    hpricot (0.8.4)
     paperclip (2.3.11)
       activerecord (>= 2.3.0)
       activesupport (>= 2.3.2)
@@ -31,6 +32,8 @@ GEM
       activesupport (= 2.3.11)
       rake (>= 0.8.3)
     rake (0.8.7)
+    sanitize (1.0.8)
+      hpricot (~> 0.8.1)
     will_paginate (2.3.15)
 
 PLATFORMS
@@ -42,4 +45,5 @@ DEPENDENCIES
   paperclip
   radiant (~> 0.9.1)
   rails (~> 2.3.5)
+  sanitize (~> 1.0.8)
   will_paginate (~> 2.3.11)

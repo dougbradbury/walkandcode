@@ -75,7 +75,6 @@ Radiant::Initializer.run do |config|
     end
   end
 
-  config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
 
   config.after_initialize do
     Radiant::Config['comments.require_simple_spam_filter'] = false
