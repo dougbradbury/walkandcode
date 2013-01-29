@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "~>2.3.15"
+gem "rails", "~>2.3.16"
 gem "authlogic"
 gem "radiant", "~>0.9.1"
 gem "RedCloth"
